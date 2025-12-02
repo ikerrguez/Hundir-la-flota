@@ -6,16 +6,26 @@ public class Tablero {
      * Lo devuelve como resultado!
      */
     public static int[][] crearTableroBarcos(int filas, int columnas) {
-        // TODO
-        return null;
+        int[][] tablero = new int[filas][columnas];
+        for (int f = 0; f < filas; f++) {
+            for (int c = 0; c < columnas; c++) {
+                tablero[f][c] = -1;//sin barco
+            }
+        }
+        return tablero;
     }
 
     /**
      * Crea un tablero de disparos y lo inicializa a '~' (no disparado).
      */
     public static char[][] crearTableroDisparos(int filas, int columnas) {
-        // TODO
-        return null;
+        char[][] tablero = new char[filas][columnas];
+        for (int f = 0; f < filas; f++) {
+            for (int c = 0; c < columnas; c++) {
+                tablero[f][c] = '~';//no disparado
+            }
+        }
+        return tablero;
     }
 
     /**
@@ -52,7 +62,6 @@ public class Tablero {
      * Comprueba si una coordenada está dentro del tablero. Devuelve "true" si está, "false" si no está.
      */
     public static boolean esCoordenadaValida(int fila, int columna, int filas, int columnas) {
-        // TODO
-        return false;
+        return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
     }
 }
