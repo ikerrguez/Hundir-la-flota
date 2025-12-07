@@ -36,7 +36,18 @@ public class Tablero {
      * Recibe como entrada el tablero a imprimir, no devuelve nada de salida, simplemente lo imprime.
      */
     public static void mostrarTableroDisparos(char[][] tableroDisparos) {
-        // TODO
+        System.out.print(" ");
+        for (int c = 0; c < tableroDisparos.length; c++) { //imprime los números de las columnas (0 1 2 3...)
+            System.out.print(c+ " ");
+        }
+        System.out.println();
+        for (int f = 0; f < tableroDisparos.length; f++) { //recorre cada fila del tablero
+            System.out.print(f+ " ");
+            for (int c = 0; f < tableroDisparos[f].length; c++) { //recorre cada columna de la fila actual
+                System.out.print(tableroDisparos[f][c] + " "); //muestra ~, T, H ...
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -55,7 +66,26 @@ public class Tablero {
      * - hay un barco, el barco "1": 1
      */
     public static void mostrarTableroConBarcos(int[][] tableroBarcos, char[][] tableroDisparosCPU) {
-        // TODO
+        System.out.print(" ");
+        for (int c = 0; c < tableroBarcos.length; c++) { // imprime los números de las columnas (0 1 2 3...)
+            System.out.print(c+ " ");
+        }
+        System.out.println();
+        for (int f = 0; f < tableroBarcos.length; f++) { //recorre cada fila del tablero
+            System.out.print(f+ " ");
+            for (int c = 0; c < tableroBarcos[f].length; c++) { //recorre cada columna de la fila
+                if(tableroBarcos[f][c] == -1) { //si no hay barco en esa posición (-1 = agua)
+                    System.out.print(tableroDisparosCPU[f][c] + " ");
+                } else { //si hay barco en esa posición
+                    if (tableroDisparosCPU[f][c] == 'T' || tableroDisparosCPU[f][c] == 'H') { //si hay disparo y el barco está tocado o hundido, mostrar 'T' o 'H'
+                        System.out.print(tableroDisparosCPU[f][c] + " ");
+                    } else { //mostrar el barco si no fue golpeado
+                        System.out.print(tableroBarcos[f][c] + " ");
+                    }
+                }
+            }
+            System.out.println();
+        }
     }
 
     /**
