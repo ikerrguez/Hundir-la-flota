@@ -11,13 +11,13 @@ public class Disparos {
 
     /**
      * Procesa un disparo sobre (fila, columna).
-     *
+     * <p>
      * - Si no hay barco (idBarco == -1): marca 'A' (agua).
      * - Si hay barco:
-     *      - incrementa impactosBarco[idBarco] - ya que tiene un impacto más.
-     *      - si impactos < tamaño → 'T' (tocado) - ya que es por ejemplo el segundo impacto en un barco de 3
-     *      - si impactos == tamaño → marcar TODAS sus celdas como 'H' (hundido)
-     *
+     * - incrementa impactosBarco[idBarco] - ya que tiene un impacto más.
+     * - si impactos < tamaño → 'T' (tocado) - ya que es por ejemplo el segundo impacto en un barco de 3
+     * - si impactos == tamaño → marcar TODAS sus celdas como 'H' (hundido)
+     * <p>
      * Devuelve true si el disparo ha hundido un barco, false en caso contrario.
      */
     public static boolean procesarDisparo(
@@ -28,7 +28,32 @@ public class Disparos {
             int[] impactosBarco,
             int[] tamanosBarco
     ) {
-        // TODO
-        return true;
+        int idBarco = tableroBarcos[fila][columna];
+
+        if (idBarco == -1) { //si no hay barco
+            tableroDisparos[fila][columna] = '~'; //marcamos agua porque no hay barco
+            return false; // no se ha hundido nada
+
+        } else { //aquí hay un barco, así que aumentamos sus impactos
+            impactosBarco[idBarco]++;
+
+            if (impactosBarco[idBarco] < tamanosBarco[idBarco]) { //si todavía no se ha alcanzado el tamaño del barco
+                tableroDisparos[fila][columna] = 'T'; //marcamos la casilla como tocado
+                return false; // no está hundido todavía
+            } else { //aquí el barco ya está hundido
+
+                //recorremos el tablero entero
+                for (int f = 0; f < tableroBarcos.length; f++) {
+                    for (int c = 0; c < tableroBarcos[f].length; c++) {
+
+                        if (tableroBarcos[f][c] == idBarco) { //si encontramos una parte del barco hundido
+                            tableroDisparos[f][c] = 'H'; //la marcamos como hundida
+                        }
+                    }
+                }
+
+                return true;
+            }
+        }
     }
 }
