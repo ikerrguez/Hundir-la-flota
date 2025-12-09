@@ -32,8 +32,19 @@ public class Utilidades {
      * Si la coordenada no es válida, puede devolver -1.
      */
     public static int convertirColumna(String coord) {
-       // TODO
-        return -1;
+        if (coord.length() < 1) return -1; //comprueba si el texto está vacía, y si lo está devuelve un -1 (error)
+        String letra = coord.substring(0, 1); //coge la primera letra de la coordenada
+        if (letra.equals("A")) return 0; //si la letra es A, la columna es 0
+        if (letra.equals("B")) return 1; //si la letra es B, la columna es 1, y así sucesivamente
+        if (letra.equals("C")) return 2;
+        if (letra.equals("D")) return 3;
+        if (letra.equals("E")) return 4;
+        if (letra.equals("F")) return 5;
+        if (letra.equals("G")) return 6;
+        if (letra.equals("H")) return 7;
+        if (letra.equals("I")) return 8;
+        if (letra.equals("J")) return 9;
+        return -1; //sino devuelve -1
     }
 
     /**
