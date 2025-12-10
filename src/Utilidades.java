@@ -21,8 +21,16 @@ public class Utilidades {
      */
     public static int convertirFila(String coord) { //convierte la coordenada en fila
         if (coord.length() < 2) return -1; //si es muy corta, no es válida
-        String numero = coord.substring(1); //quita le letra y guarda sólo el número
-        return Integer.parseInt(numero); //convierte el texto a número
+        try {//usamos try-catch para que no explote si ponen letras donde van números
+            String numero = coord.substring(1);
+            int filaUsuario = Integer.parseInt(numero);
+
+            //restamos 1. Si el usuario escribe "1", nosotros queremos la posición 0.
+            return filaUsuario - 1;
+
+        } catch (Exception e) {
+            return -1; //si falla al convertir ,por ejemplo si ponen "AA", devuelve error (-1)
+        }
     }
 
     /**
@@ -33,7 +41,7 @@ public class Utilidades {
      */
     public static int convertirColumna(String coord) {
         if (coord.length() < 1) return -1; //comprueba si el texto está vacía, y si lo está devuelve un -1 (error)
-        String letra = coord.substring(0, 1); //coge la primera letra de la coordenada
+        String letra = coord.substring(0, 1).toUpperCase(); //coge la primera letra de la coordenada
         if (letra.equals("A")) return 0; //si la letra es A, la columna es 0
         if (letra.equals("B")) return 1; //si la letra es B, la columna es 1, y así sucesivamente
         if (letra.equals("C")) return 2;
