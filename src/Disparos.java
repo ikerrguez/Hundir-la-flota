@@ -31,7 +31,7 @@ public class Disparos {
         int idBarco = tableroBarcos[fila][columna];
 
         if (idBarco == -1) { //si no hay barco
-            tableroDisparos[fila][columna] = '~'; //marcamos agua porque no hay barco
+            tableroDisparos[fila][columna] = 'A'; //marcamos A (Agua). Antes tenía ~, y con esto podríamos disparar infinitas veces en la misma casilla
             return false; // no se ha hundido nada
 
         } else { //aquí hay un barco, así que aumentamos sus impactos
